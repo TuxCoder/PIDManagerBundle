@@ -74,7 +74,7 @@ class PIDManagerListener {
   public function onCommandTerminate(ConsoleTerminateEvent $event) {
     if(isset($this->pid_paths[$event->getCommand()->getName()])) {
       $this->pidManager->setNotRunning();
-    }else  if($this->pid_paths['default']) {
+    }else  if(isset($this->pid_paths['default'])) {
       $this->pidManager->setNotRunning();
     }else {
       return;
@@ -89,7 +89,7 @@ class PIDManagerListener {
   public function onCommandException(ConsoleExceptionEvent $event) {
     if(isset($this->pid_paths[$event->getCommand()->getName()])) {
       $this->pidManager->setNotRunning();
-    }else  if($this->pid_paths['default']) {
+    }else  if(isset($this->pid_paths['default'])) {
       $this->pidManager->setNotRunning();
     }
   }
