@@ -3,21 +3,21 @@ SymfonyPIDManager
 
 Description
 -----------
-This bundle is to prevent that a command runs twice.
+This bundle is intended to prevent running a command twice at the same time.
 
-As an example is when you will spool your mails with an cronjob
+When you spool your mails for an example with an cronjob
 and have a huge amount of mails,
-so it can happen that it is still sending emails and
-start the command a second time.
+it could otherwise happen that the old instance is still sending emails while
+starting the command a second time.
 
 ###Function
-The functionality is simple, at the start from a command it writes into
-a configured file(pid_path) the current pid (process id).
-When the command runs a second time it will check this file and
-check if the process is still running if yes it throws an exception.
+The functionality is kept simple. Before executing a command this PIDManager writes
+the current pid (process id) into a configured file(pid_path).
+Before running a second time it will check this file and
+return if the process is still running.
 
 ###Warning
-This Bundle only work on Linux, because it detect running processes over the
+This Bundle currently only works on Linux, because it detects running processes over the
 procfs (/proc/$pid).
 
 Usage
@@ -25,11 +25,11 @@ Usage
 
 ###With Symfony2
 
-AppKernel.php add the follow lines
+AppKernel.php add the following lines
 
     new TuxCoder\PIDManagerBundle\PIDManagerBundle(),
 
-config.yml add the follow lines
+config.yml add the following lines
 
     pid_manager:
       commands:
@@ -57,4 +57,4 @@ TODO
 
 * Write some Tests
 * Add an event handler for "AllreadyRunningException".
-* if requested also make it runnable on Windows, Mac, BSD....
+* If requested also make it runnable on Windows, Mac, BSD....
