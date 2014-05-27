@@ -1,0 +1,11 @@
+services:
+    tuxcoder.pid_manager:
+        class:     TuxCoder\PIDManagerBundle\PIDManager
+        arguments: []
+    tuxcoder.pid_manager_listner:
+        class: TuxCoder\PIDManagerBundle\EventListener\PIDManagerListener
+        arguments: [ "@service_container"]
+        tags:
+          - { name: kernel.event_listener, event: console.command, method: onCommandStated }
+          - { name: kernel.event_listener, event: console.terminate, method: onCommandTerminate }
+          - { name: kernel.event_listener, event: console.exception, method: onCommandException }
