@@ -54,7 +54,7 @@ class PIDManagerListener {
     if(isset($this->pid_paths[$event->getCommand()->getName()])) {
       $this->pidManager->setPidPath($this->pid_paths[$event->getCommand()->getName()]);
     //looking for default pid
-    }else if($this->pid_paths['default']) {
+    }else  if(isset($this->pid_paths['default'])) {
       $this->pidManager->setPidPath($this->pid_paths['default']);
     }else {
       return;
